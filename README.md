@@ -6,8 +6,9 @@ This repository contains the final project for the 2025 Annual PI Game
 
 ```
 📦acsk2025-pigame-group8
- ┣ 📂code/                ← Python scripts for data analysis and simulation
- ┣ 📂report/              ← LaTeX source files for the final write-up
+ ┣ 📂assignment_files/    ← All the files we were provided via canvas
+ ┣ 📂code/                ← Python scripts we work with
+ ┣ 📂report/              ← LaTeX source files (we will work in overleaf and add here at the end)
  ┣ 📜README.md            ← This file
  ┗ 📜.gitignore           ← Commonly ignored files (builds, logs, etc.)
 ```
@@ -17,17 +18,20 @@ This repository contains the final project for the 2025 Annual PI Game
 
 ### ONE-TIME SETUP
 
-1. **Install Git**
+1. **Create a GitHub account**
+   [Sign-up](https://github.com/signup)
+
+2. **Install Git**
    - [Windows](https://git-scm.com/download/win)
    - [macOS](https://git-scm.com/download/mac)
 
-2. **Configure Git**
+3. **Configure Git**
    ```bash
    git config --global user.name "Your Name"
    git config --global user.email "you@example.com"
    ```
 
-3. **Clone the Repository**
+4. **Clone the Repository**
    ```bash
    cd ~/Documents  # or wherever you want the folder
    git clone https://github.com/michaaaaaal/acsk2025-pigame-group8.git
@@ -67,3 +71,4 @@ This repository contains the final project for the 2025 Annual PI Game
 
 - For full reproducibility, all code used for figures and computations is included.
 - Final report compiled in LaTeX, adhering to course style guidelines.
+- If you make any structural changes to the repository, please update the README too
