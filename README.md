@@ -37,6 +37,8 @@ This repository contains the final project for the 2025 Annual PI Game
    git clone https://github.com/michaaaaaal/acsk2025-pigame-group8.git
    cd acsk2025-pigame-group8
    ```
+**Note**
+   If you do not feel comfortable using the terminal, you can use [GitDesktop](https://github.com/apps/desktop)
 
 ### DAILY WORKFLOW
 
