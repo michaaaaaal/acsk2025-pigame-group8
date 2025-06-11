@@ -2,7 +2,7 @@
 
 This repository contains the final project for the 2025 Annual PI Game
 
-## Structure
+## Structure (might and probably will change later)
 
 ```
 📦acsk2025-pigame-group8
@@ -11,13 +11,6 @@ This repository contains the final project for the 2025 Annual PI Game
  ┣ 📜README.md            ← This file
  ┗ 📜.gitignore           ← Commonly ignored files (builds, logs, etc.)
 ```
-
-## How to use the repository
-
-1. Navigate to the `code` directory.
-2. Install dependencies from `requirements.txt` (if available).
-3. Run the analysis using your preferred Python environment.
-
 ---
 
 ## Git Setup for Team Members (Windows/macOS)
@@ -47,12 +40,13 @@ This repository contains the final project for the 2025 Annual PI Game
 |-----------------------------|--------------------------------------|
 | Get latest version          | `git pull origin main`               |
 | Stage your changes          | `git add .`                          |
+| Stage your changes to 1 file| `git add .`                          |
 | Commit with a message       | `git commit -m "Update section 2.1"` |
 | Push changes to GitHub      | `git push origin main`               |
 
 ### Best Practices
 
-- Always `git pull` before editing anything.
+- Always `git pull` before you start editing anything.
 - Only edit one LaTeX file at a time to avoid merge conflicts.
 - Use descriptive commit messages.
 - Do not commit temporary files or LaTeX build files (`.aux`, `.log`, etc.).
