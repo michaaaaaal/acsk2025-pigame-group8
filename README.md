@@ -42,7 +42,7 @@ This repository contains the final project for the 2025 Annual PI Game
 
 ### DAILY WORKFLOW
 
-| Task                        | Command                             |
+| Task                        | Command                              |
 |-----------------------------|--------------------------------------|
 | Get latest version          | `git pull origin main`               |
 | Stage your changes          | `git add .`                          |
