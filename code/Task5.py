@@ -122,3 +122,15 @@ for store in stores:
     plt.tight_layout()
     plt.show()
 
+#Anthony I think you missed task b but im not sure maybe i didnt find it
+#i added it below
+
+for store in stores:
+    plt.figure(figsize=(8, 4))
+    sns.histplot(data=bakery_long[bakery_long['store'] == store], x='demand', bins=20, kde=True)
+    plt.title(f'Demand Distribution for {store}')
+    plt.xlabel('Demand')
+    plt.ylabel('Frequency')
+    plt.tight_layout()
+    plt.show()
+
