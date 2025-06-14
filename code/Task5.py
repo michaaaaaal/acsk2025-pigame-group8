@@ -10,7 +10,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.expand_frame_repr', False)
 
 
-bakery_data = pd.read_excel('C:/Users/User/Desktop/PI/BakeryData2025_Vilnius.xlsx')
+bakery_data = pd.read_excel('./data/BakeryData2025_Vilnius.xlsx')
 
 
 print(bakery_data)
