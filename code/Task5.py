@@ -2,45 +2,28 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-from scipy.stats import gamma, norm
-from scipy.optimize import minimize_scalar
-
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.expand_frame_repr', False)
 
 
 bakery_data = pd.read_excel('./data/BakeryData2025_Vilnius.xlsx')
-
-
-print(bakery_data)
-
-
 stores = [col for col in bakery_data.columns if col not in ['date', 'weekday']]
+bakery_long = bakery_data.melt(id_vars=['date', 'weekday'], var_name='store', value_name='demand')
+bakery_long.dropna(subset=['demand'], inplace=True)
+bakery_long['date'] = pd.to_datetime(bakery_long['date'])
 
-
-bakery_long = bakery_data.melt(
-    id_vars=['date', 'weekday'],
-    var_name='store',
-    value_name='demand'
-)
-
-
-bakery_long = bakery_long.dropna(subset=['demand'])
 
 
 weekday_map = {
-    1: 'Monday',
-    2: 'Tuesday',
-    3: 'Wednesday',
-    4: 'Thursday',
-    5: 'Friday',
-    6: 'Saturday',
-    7: 'Sunday'
+    1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday',
+    5: 'Friday', 6: 'Saturday', 7: 'Sunday'
 }
+
 bakery_long['weekday_name'] = bakery_long['weekday'].map(weekday_map)
 
 
+#Descriptive Statistics
 print("Overall statistics:")
 print(bakery_long['demand'].describe())
 
@@ -68,6 +51,7 @@ store_weekday_stats['weekday_name'] = pd.Categorical(
 store_weekday_stats = store_weekday_stats.sort_values(['store', 'weekday_name'])
 print(store_weekday_stats)
 
+#Boxplots by Store and Weekday
 plt.figure(figsize=(12, 6))
 
 
@@ -84,9 +68,10 @@ plt.title('Daily Demand by Weekday')
 plt.xticks(rotation=45)
 
 plt.tight_layout()
+plt.savefig("./report/figures/boxplot_store_and_weekday.png", dpi=300)
 plt.show()
 
-
+#Time Series Overview for All Stores
 plt.figure(figsize=(12, 6))
 for store in bakery_long['store'].unique():
     store_data = bakery_long[bakery_long['store'] == store]
@@ -96,13 +81,12 @@ plt.title('Demand Over Time by Store')
 plt.xlabel('Date')
 plt.ylabel('Demand')
 plt.legend()
+plt.savefig("./report/figures/time_series_all_stores.png", dpi=300)
 plt.show()
 
-
+#Individual Store Time Series with 7-Day Moving Average
 for store in stores:
     plt.figure(figsize=(12, 5))
-
-
     plt.plot(bakery_data['date'], bakery_data[store],
              label='Daily Demand', color='steelblue', alpha=0.7)
 
@@ -118,13 +102,11 @@ for store in stores:
     plt.ylabel('Demand', fontsize=12)
     plt.grid(True, alpha=0.3)
     plt.legend()
-
     plt.tight_layout()
+    plt.savefig(f"./report/figures/store_trend_{store.replace(' ', '_')}.png", dpi=300)
     plt.show()
 
-#Anthony I think you missed task b but im not sure maybe i didnt find it
-#i added it below
-
+#Histograms by Store
 for store in stores:
     plt.figure(figsize=(8, 4))
     sns.histplot(data=bakery_long[bakery_long['store'] == store], x='demand', bins=20, kde=True)
@@ -132,5 +114,9 @@ for store in stores:
     plt.xlabel('Demand')
     plt.ylabel('Frequency')
     plt.tight_layout()
+    plt.savefig(f"./report/figures/histogram_{store.replace(' ', '_')}.png", dpi=300)
     plt.show()
 
+
+#for debugging dataset
+#print(bakery_data)
