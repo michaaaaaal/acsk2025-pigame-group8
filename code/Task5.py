@@ -68,7 +68,7 @@ plt.title('Daily Demand by Weekday')
 plt.xticks(rotation=45)
 
 plt.tight_layout()
-plt.savefig("./report/figures/boxplot_store_and_weekday.png", dpi=300)
+plt.savefig("./report/figures/task5/boxplot_store_and_weekday.png", dpi=300)
 plt.show()
 
 #Time Series Overview for All Stores
@@ -81,7 +81,7 @@ plt.title('Demand Over Time by Store')
 plt.xlabel('Date')
 plt.ylabel('Demand')
 plt.legend()
-plt.savefig("./report/figures/time_series_all_stores.png", dpi=300)
+plt.savefig("./report/figures/task5/time_series_all_stores.png", dpi=300)
 plt.show()
 
 #Individual Store Time Series with 7-Day Moving Average
@@ -103,7 +103,7 @@ for store in stores:
     plt.grid(True, alpha=0.3)
     plt.legend()
     plt.tight_layout()
-    plt.savefig(f"./report/figures/store_trend_{store.replace(' ', '_')}.png", dpi=300)
+    plt.savefig(f"./report/figures/task5/store_trend_{store.replace(' ', '_')}.png", dpi=300)
     plt.show()
 
 #Histograms by Store
@@ -114,7 +114,7 @@ for store in stores:
     plt.xlabel('Demand')
     plt.ylabel('Frequency')
     plt.tight_layout()
-    plt.savefig(f"./report/figures/histogram_{store.replace(' ', '_')}.png", dpi=300)
+    plt.savefig(f"./report/figures/task5/histogram_{store.replace(' ', '_')}.png", dpi=300)
     plt.show()
 
 
