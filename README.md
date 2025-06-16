@@ -8,6 +8,7 @@ This repository contains the final project for the 2025 Annual PI Game
 📦acsk2025-pigame-group8
  ┣ 📂assignment_files/    ← All the files we were provided via canvas
  ┣ 📂code/                ← Python scripts we work with
+ ┣ 📂data/                ← BakeryData2025_Vilnius.xlsx
  ┣ 📂report/              ← LaTeX source files (we will work in overleaf and add here at the end)
  ┣ 📜README.md            ← This file
  ┗ 📜.gitignore           ← Commonly ignored files (builds, logs, etc.)
