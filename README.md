@@ -24,7 +24,6 @@ This repository contains the final project for the 2025 Annual PI Game
 • Task 6: 🟨 (report to be written)
 • Task 7: 🟥
 • Task 8: 🟥
-
 ```
 ---
 
