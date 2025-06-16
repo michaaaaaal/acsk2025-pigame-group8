@@ -14,6 +14,19 @@ This repository contains the final project for the 2025 Annual PI Game
  ┗ 📜.gitignore           ← Commonly ignored files (builds, logs, etc.)
 ```
 ---
+## Completion Checklist
+```
+• Task 1: 🟨 (half of this is the writing assignment)
+• Task 2: 🟨 (report + code to be finished)
+• Task 3: 🟥
+• Task 4: 🟥
+• Task 5: 🟩 (complete to be verified)
+• Task 6: 🟨 (report to be written)
+• Task 7: 🟥
+• Task 8: 🟥
+
+```
+---
 
 ## Git Setup for Team Members (Windows/macOS)
 
