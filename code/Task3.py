@@ -17,8 +17,8 @@ Q_star =lambda tau: norm.ppf(tau,loc=115,scale=10)
 
 #non-parametric
 sorted_sample = np.sort(demand_sample)
-index = int(np.ceil(tau * n)) - 1
-Q_np = sorted_sample[index]
+Q_np = sorted_sample[int(np.ceil(tau * n)) - 1] #item from sorted demand sample at tau quantile
+
 
 print(Q_np)
 print("True optimal Q:", Q_star(tau))
