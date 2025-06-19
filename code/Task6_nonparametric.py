@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 bakery_data = pd.read_excel('C:/Users/User/Desktop/PI/BakeryData2025_Vilnius.xlsx')
 stores = [col for col in bakery_data.columns if col not in ['date', 'weekday']]
@@ -64,3 +65,25 @@ for store in target_stores:
 
 results_df = pd.DataFrame(results)
 print(results_df[['store', 'weekday', 'critical_ratio', 'q_star', 'ci_lower', 'ci_upper']])
+
+
+output_df = results_df[['store', 'weekday', 'critical_ratio', 'q_star', 'ci_lower', 'ci_upper']]
+
+fig, ax = plt.subplots(figsize=(10, 4))
+
+ax.axis('off')
+
+table = ax.table(cellText=output_df.values,
+                 colLabels=output_df.columns,
+                 loc='center',
+                 cellLoc='center')
+
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.scale(1.2, 1.2)
+
+plt.tight_layout()
+
+plt.savefig('optimal_quantities_table.png', dpi=300, bbox_inches='tight')
+
+plt.show()
