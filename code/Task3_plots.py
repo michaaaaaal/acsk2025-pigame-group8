@@ -20,7 +20,6 @@ def plot_metric(df, y_col, title, filename, ylabel):
     plt.savefig(os.path.join("./report/figures/task3/", filename))
     plt.show()
 
-# === Generate all requested plots ===
 plot_metric(df, "RMSE (Parametric)", "RMSE (Parametric Estimator)", "rmse_parametric.png", "RMSE")
 plot_metric(df, "RMSE (Nonparametric)", "RMSE (Nonparametric Estimator)", "rmse_nonparametric.png", "RMSE")
 plot_metric(df, "RMSE ratio (Nonparametric / Parametric)", "RMSE Ratio (NP / P)", "rmse_ratio.png", "RMSE Ratio")
