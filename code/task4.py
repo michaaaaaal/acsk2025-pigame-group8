@@ -15,12 +15,15 @@ Q_star_poisson_10 = []
 Q_star_expon_10 = []
 Q_star_poisson_200 = []
 Q_star_expon_200 = []
+Q_star_normal = []
 
 
 for tau in taus:
     Q_hat = norm.ppf(tau, loc=25, scale=0.5)
-    Q_star_norm = norm.ppf(tau, loc=25, scale=0.5)
-    Q_errors_normal.append(abs(Q_hat - Q_star_norm))
+    sample_norm = np.random.normal(loc=25, scale=0.5, size=200)     #n = 200 for normal test
+    Q_star = np.sort(sample_norm)[int(np.ceil(tau * 200)) - 1]
+    Q_errors_normal.append(abs(Q_hat - Q_star))
+    Q_star_normal.append(Q_star)
 
 n_list = [10, 200]
 
@@ -57,7 +60,7 @@ def build_table(Q_hat_list, Q_star_list, error_list):
     )
 
 tables = {
-    "Normal (Correct)": build_table(Q_hat_values, Q_hat_values, Q_errors_normal),
+    "Normal (Correct)": build_table(Q_hat_values, Q_star_normal, Q_errors_normal),
     "Poisson n=10": build_table(Q_hat_values, Q_star_poisson_10, Q_errors_poisson_10),
     "Poisson n=200": build_table(Q_hat_values, Q_star_poisson_200, Q_errors_poisson_200),
     "Exponential n=10": build_table(Q_hat_values, Q_star_expon_10, Q_errors_expon_10),
