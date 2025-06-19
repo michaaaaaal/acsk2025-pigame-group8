@@ -93,6 +93,12 @@ print(results_df[['store', 'weekday', 'critical_ratio', 'q_star', 'ci_lower', 'c
 
 output_df = results_df[['store', 'weekday', 'critical_ratio', 'q_star', 'ci_lower', 'ci_upper']]
 
+
+output_df['critical_ratio'] = output_df['critical_ratio'].round(4)
+output_df['q_star'] = output_df['q_star'].round(3)
+output_df['ci_lower'] = output_df['ci_lower'].round(3)
+output_df['ci_upper'] = output_df['ci_upper'].round(3)
+
 fig, ax = plt.subplots(figsize=(10, 4))
 
 ax.axis('off')
