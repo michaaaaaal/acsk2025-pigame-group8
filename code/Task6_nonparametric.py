@@ -9,10 +9,10 @@ bakery_long['weekday_name'] = bakery_long['weekday'].map(weekday_map)
 
 cost_data = {
     'main street A': {'c': 3.85, 'p': 4.64, 'c_S': 0.11, 'p_L': 0.15},
-    'station A': {'c': 4.16, 'p': 4.64, 'c_S': 0.08, 'p_L': 0.15}
+    'station B': {'c': 3.32, 'p': 4.64, 'c_S': 0.09, 'p_L': 0.15}
 }
 
-target_stores = ['main street A', 'station A']
+target_stores = ['main street A', 'station B']
 target_days = ['Friday', 'Saturday', 'Sunday']
 results = []
 
