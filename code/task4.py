@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-taus = np.linspace(0.01, 0.99, 99)
+taus = [0.01, 0.05, 0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.99]
 Q_errors_normal = []
 Q_errors_poisson_10 = []
 Q_errors_expon_10 = []
