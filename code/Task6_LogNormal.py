@@ -114,6 +114,46 @@ table.scale(1.2, 1.2)
 
 plt.tight_layout()
 
-plt.savefig('optimal_quantities_table.png', dpi=300, bbox_inches='tight')
+
+plt.savefig(
+    'Figure_LogNormal.pdf',
+    format='pdf',
+    dpi=1200,
+    metadata={'Creator': 'Your Name'},
+    facecolor='w'
+)
+
+
+station_b_df = results_df[results_df['store'] == 'station B'].copy()
+
+
+station_b_df['critical_ratio'] = station_b_df['critical_ratio'].round(4)
+station_b_df['q_star'] = station_b_df['q_star'].round(3)
+station_b_df['ci_lower'] = station_b_df['ci_lower'].round(3)
+station_b_df['ci_upper'] = station_b_df['ci_upper'].round(3)
+
+
+fig, ax = plt.subplots(figsize=(10, 3))
+ax.axis('off')
+
+table = ax.table(cellText=station_b_df[['weekday', 'critical_ratio', 'q_star', 'ci_lower', 'ci_upper']].values,
+                 colLabels=['Weekday', 'Critical Ratio', 'Q*', 'CI Lower', 'CI Upper'],
+                 loc='center',
+                 cellLoc='center')
+
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.scale(1.2, 1.2)
+
+plt.tight_layout()
+
+
+plt.savefig(
+    'Figure_LogNormal_StationB.pdf',
+    format='pdf',
+    dpi=1200,
+    metadata={'Creator': 'Your Name'},
+    facecolor='w'
+)
 
 plt.show()

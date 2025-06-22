@@ -100,6 +100,46 @@ table.scale(1.2, 1.2)
 
 plt.tight_layout()
 
-plt.savefig('optimal_quantities_table.png', dpi=300, bbox_inches='tight')
+plt.savefig(
+    'Figure_Normal.pdf',
+    format='pdf',
+    dpi=1200,
+    metadata={'Creator': 'Your Name'},
+    facecolor='w'
+)
+
+
+main_street_results = results_df[results_df['store'] == 'main street A'].copy()
+
+main_street_results['critical_ratio'] = main_street_results['critical_ratio'].round(4)
+main_street_results['q_star'] = main_street_results['q_star'].round(3)
+main_street_results['ci_lower'] = main_street_results['ci_lower'].round(3)
+main_street_results['ci_upper'] = main_street_results['ci_upper'].round(3)
+
+fig, ax = plt.subplots(figsize=(10, 3))
+
+ax.axis('off')
+
+table = ax.table(cellText=main_street_results[['weekday', 'critical_ratio', 'q_star', 'ci_lower', 'ci_upper']].values,
+                 colLabels=['Weekday', 'Critical Ratio', 'Q*', 'CI Lower', 'CI Upper'],
+                 loc='center',
+                 cellLoc='center')
+
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.scale(1.2, 1.2)
+
+plt.tight_layout()
+
+plt.savefig(
+    'Figure_Normal_MainStreetA.pdf',
+    format='pdf',
+    dpi=1200,
+    metadata={'Creator': 'Your Name'},
+    facecolor='w'
+)
 
 plt.show()
+
+print("\nResults for Main Street A:")
+print(main_street_results[['weekday', 'critical_ratio', 'q_star', 'ci_lower', 'ci_upper']])
