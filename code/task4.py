@@ -18,26 +18,40 @@ for n in [10, 200]:
         Q_hat = norm.ppf(tau, loc=25, scale=0.5)
 
         for _ in range(M):
-            norm_sample = np.random.normal(25, 0.5, size=n)
-            pois_sample = np.random.poisson(25, size=n)
-            exp_sample = np.random.exponential(scale=25, size=n)
 
+            #normal
+            norm_sample = np.random.normal(25, 0.5, size=n)
             mu_hat = np.mean(norm_sample)
             sigma_hat = np.std(norm_sample, ddof=1)
             Q_hat = norm.ppf(tau, loc=mu_hat, scale=sigma_hat)
-
-            Q_star_norm = norm.ppf(tau, loc=25, scale=0.5)
-            Q_star_pois = poisson.ppf(tau, mu=25)
-            Q_star_exp = expon.ppf(tau, scale=25)
-
+            Q_star = np.sort(norm_sample)[int(np.ceil(tau * n)) - 1]
             if n == 10:
-                Q_errors_normal_10[i].append(abs(Q_hat - Q_star_norm))
-                Q_errors_poisson_10[i].append(abs(Q_hat - Q_star_pois))
-                Q_errors_expon_10[i].append(abs(Q_hat - Q_star_exp))
+                Q_errors_normal_10[i].append(abs(Q_hat - Q_star))
             else:
-                Q_errors_normal_200[i].append(abs(Q_hat - Q_star_norm))
-                Q_errors_poisson_200[i].append(abs(Q_hat - Q_star_pois))
-                Q_errors_expon_200[i].append(abs(Q_hat - Q_star_exp))
+                Q_errors_normal_200[i].append(abs(Q_hat - Q_star))
+
+            #poisson
+            pois_sample = np.random.poisson(25, size=n)
+            mu_hat = np.mean(pois_sample)
+            sigma_hat = np.std(pois_sample, ddof=1)
+            Q_hat = norm.ppf(tau, loc=mu_hat, scale=sigma_hat)
+            Q_star = np.sort(pois_sample)[int(np.ceil(tau * n)) - 1]
+            if n == 10:
+                Q_errors_poisson_10[i].append(abs(Q_hat - Q_star))
+            else:
+                Q_errors_poisson_200[i].append(abs(Q_hat - Q_star))
+
+            #exponential
+            exp_sample = np.random.exponential(scale=25, size=n)
+            mu_hat = np.mean(exp_sample)
+            sigma_hat = np.std(exp_sample, ddof=1)
+            Q_hat = norm.ppf(tau, loc=mu_hat, scale=sigma_hat)
+            Q_star = np.sort(exp_sample)[int(np.ceil(tau * n)) - 1]
+            if n == 10:
+                Q_errors_expon_10[i].append(abs(Q_hat - Q_star))
+            else:
+                Q_errors_expon_200[i].append(abs(Q_hat - Q_star))
+
 
 # Build tables
 def build_table(Q_hat_values, grouped_errors):
