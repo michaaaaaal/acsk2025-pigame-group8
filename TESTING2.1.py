@@ -1,38 +1,35 @@
 from scipy.stats import norm, gamma, expon, poisson
-from scipy.integrate import quad
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 
 np.random.seed(60)
 
-
+# Newsvendor profit function
 def nvp_formula(Q, Y, c, p):
-
     return p * min(Q, Y) - c * Q
 
-
-mu = 115
-sigma = 10
-n = 50
-tau = 0.9
-M = 1000
-
+# Parameters
 n_list = [10, 50, 100, 200]
 tau_list = [0.01, 0.05, 0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.99]
+M = 1000  # Number of simulations
+c_base = 1  # Base cost (adjusted per tau)
+p = 1       # Selling price
 
-c = 1 - tau
-p = 1
-
+# Adjust gamma parameters to match normal mean=115, var=100
+gamma_shape = (115**2) / 100   # 132.25
+gamma_scale = 100 / 115         # ~0.8696
+exp_scale = 115                 # Mean=115, var=13225 (fixed)
+poisson_lambda = 115            # Mean=115, var=115
+norm_mu, norm_sigma = 115, 10   # Mean=115, var=100
 
 all_results = []
+
 
 # Gamma Distribution
 for n in n_list:
     for tau in tau_list:
-        gamma_shape = 13.23
-        gamma_scale = 8.69
-        Q_star_gamma = gamma.ppf(tau, a=gamma_shape, scale=gamma_scale)
+        c = c_base * (1 - tau)
+        Q_star_gamma = gamma.ppf(tau, gamma_shape, scale=gamma_scale)
 
         Q_np_list = []
         Q_p_list = []
@@ -82,8 +79,8 @@ for n in n_list:
 # Exponential Distribution
 for n in n_list:
     for tau in tau_list:
-        exp_lambda = 1 / 115
-        Q_star_exp = expon.ppf(tau, scale=1 / exp_lambda)
+        c = c_base * (1 - tau)
+        Q_star_exp = expon.ppf(tau, scale=exp_scale)
 
         Q_np_list = []
         Q_p_list = []
@@ -91,7 +88,7 @@ for n in n_list:
         plr_p_list = []
 
         for _ in range(M):
-            demand_sample = np.random.exponential(scale=1 / exp_lambda, size=n)
+            demand_sample = np.random.exponential(scale=1 / exp_scale, size=n)
             mu_hat = np.mean(demand_sample)
             sigma_hat = np.std(demand_sample, ddof=1)
 
@@ -105,7 +102,7 @@ for n in n_list:
             Q_p_list.append(Q_p)
 
 
-            Y_obs = np.random.exponential(scale=1 / exp_lambda)
+            Y_obs = np.random.exponential(scale=1 / exp_scale)
             R_star = nvp_formula(Q_star_exp, Y_obs, c, p)
             R_np = nvp_formula(Q_np, Y_obs, c, p)
             R_p = nvp_formula(Q_p, Y_obs, c, p)
@@ -133,8 +130,8 @@ for n in n_list:
 # Poisson Distribution
 for n in n_list:
     for tau in tau_list:
-        poisson_lambda = 115
-        Q_star_poisson = poisson.ppf(tau, mu=poisson_lambda)
+        c = c_base * (1 - tau)
+        Q_star_poisson = poisson.ppf(tau, poisson_lambda)
 
         Q_np_list = []
         Q_p_list = []
@@ -153,6 +150,7 @@ for n in n_list:
 
             # Parametric estimator (misspecified as normal)
             Q_p = norm.ppf(tau, loc=mu_hat, scale=sigma_hat)
+            Q_p = round(Q_p)  # Round to nearest integer
             Q_p_list.append(Q_p)
 
 
@@ -188,7 +186,7 @@ for n in n_list:
 # Normal Distribution (Control)
 for n in n_list:
     for tau in tau_list:
-        Q_star_val = norm.ppf(tau, loc=mu, scale=sigma)
+        Q_star_val = norm.ppf(tau, loc=norm_mu, scale=norm_sigma)
 
         Q_np_list = []
         Q_p_list = []
@@ -196,7 +194,7 @@ for n in n_list:
         plr_p_list = []
 
         for _ in range(M):
-            demand_sample = np.random.normal(loc=mu, scale=sigma, size=n)
+            demand_sample = np.random.normal(loc=norm_mu, scale=norm_sigma, size=n)
             mu_hat = np.mean(demand_sample)
             sigma_hat = np.std(demand_sample, ddof=1)
 
@@ -210,7 +208,7 @@ for n in n_list:
             Q_p_list.append(Q_p)
 
 
-            Y_obs = np.random.normal(loc=mu, scale=sigma)
+            Y_obs = np.random.normal(loc=norm_mu, scale=norm_sigma)
             R_star = nvp_formula(Q_star_val, Y_obs, c, p)
             R_np = nvp_formula(Q_np, Y_obs, c, p)
             R_p = nvp_formula(Q_p, Y_obs, c, p)
@@ -237,8 +235,7 @@ for n in n_list:
 
 
 df_results = pd.DataFrame(all_results)
-df_results.to_csv("task4_distribution_misspecification_with_poisson.csv", index=False)
-
+df_results.to_csv("task4_distribution_misspecification_TESTING2.1.csv", index=False)
 
 
 
