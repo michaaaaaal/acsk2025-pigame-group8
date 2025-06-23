@@ -22,7 +22,7 @@ This repository contains the final project for the 2025 Annual PI Game
 • Task 4: 🟩 to be verified
 • Task 5: 🟩 DONE
 • Task 6: 🟩 DONE
-• Task 7: 🟥
+• Task 7: 🟨 almost finished
 • Task 8: 🟥
 ```
 ---
