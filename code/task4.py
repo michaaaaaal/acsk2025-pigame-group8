@@ -22,9 +22,13 @@ for n in [10, 200]:
             pois_sample = np.random.poisson(25, size=n)
             exp_sample = np.random.exponential(scale=25, size=n)
 
-            Q_star_norm = np.sort(norm_sample)[int(np.ceil(tau * n)) - 1]
-            Q_star_pois = np.sort(pois_sample)[int(np.ceil(tau * n)) - 1]
-            Q_star_exp = np.sort(exp_sample)[int(np.ceil(tau * n)) - 1]
+            mu_hat = np.mean(norm_sample)
+            sigma_hat = np.std(norm_sample, ddof=1)
+            Q_hat = norm.ppf(tau, loc=mu_hat, scale=sigma_hat)
+
+            Q_star_norm = norm.ppf(tau, loc=25, scale=0.5)
+            Q_star_pois = poisson.ppf(tau, mu=25)
+            Q_star_exp = expon.ppf(tau, scale=25)
 
             if n == 10:
                 Q_errors_normal_10[i].append(abs(Q_hat - Q_star_norm))
@@ -52,6 +56,6 @@ tables = {
     "Exponential n=200": build_table(Q_hat_values, Q_errors_expon_200),
 }
 
-with pd.ExcelWriter("./task4_tables_simulated1000times.xlsx") as writer:
+with pd.ExcelWriter("./report/figures/task4/task4_tables_simulated1000times.xlsx") as writer:
     for sheet_name, df in tables.items():
         df.to_excel(writer, sheet_name=sheet_name)
