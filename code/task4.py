@@ -8,6 +8,10 @@ M = 1000
 
 Q_hat_normal_10 = [[] for _ in taus]
 Q_hat_normal_200 = [[] for _ in taus]
+Q_hat_poisson_10 = [[] for _ in taus]
+Q_hat_poisson_200 = [[] for _ in taus]
+Q_hat_expon_10 = [[] for _ in taus]
+Q_hat_expon_200 = [[] for _ in taus]
 Q_star_normal_10 = [[] for _ in taus]
 Q_star_normal_200 = [[] for _ in taus]
 Q_star_poisson_10 = [[] for _ in taus]
@@ -51,9 +55,11 @@ for n in [10, 200]:
             if n == 10:
                 Q_errors_poisson_10[i].append(abs(Q_hat - Q_star))
                 Q_star_poisson_10[i].append(Q_star)
+                Q_hat_poisson_10[i].append(Q_hat)
             else:
                 Q_errors_poisson_200[i].append(abs(Q_hat - Q_star))
                 Q_star_poisson_200[i].append(Q_star)
+                Q_hat_poisson_200[i].append(Q_hat)
 
 
             #exponential
@@ -65,9 +71,11 @@ for n in [10, 200]:
             if n == 10:
                 Q_errors_expon_10[i].append(abs(Q_hat - Q_star))
                 Q_star_expon_10[i].append(Q_star)
+                Q_hat_expon_10[i].append(Q_hat)
             else:
                 Q_errors_expon_200[i].append(abs(Q_hat - Q_star))
                 Q_star_expon_200[i].append(Q_star)
+                Q_hat_expon_200[i].append(Q_hat)
 
 # Build tables
 def build_table(Q_hat_list, Q_star_list, error_list):
@@ -84,10 +92,10 @@ def build_table(Q_hat_list, Q_star_list, error_list):
 tables = {
     "Normal n=10": build_table(Q_hat_normal_10, Q_star_normal_10, Q_errors_normal_10),
     "Normal n=200": build_table(Q_hat_normal_200, Q_star_normal_200, Q_errors_normal_200),
-    "Poisson n=10": build_table(Q_hat_normal_10, Q_star_poisson_10, Q_errors_poisson_10),
-    "Poisson n=200": build_table(Q_hat_normal_200, Q_star_poisson_200, Q_errors_poisson_200),
-    "Exponential n=10": build_table(Q_hat_normal_10, Q_star_expon_10, Q_errors_expon_10),
-    "Exponential n=200": build_table(Q_hat_normal_200, Q_star_expon_200, Q_errors_expon_200),
+    "Poisson n=10": build_table(Q_hat_poisson_10, Q_star_poisson_10, Q_errors_poisson_10),
+    "Poisson n=200": build_table(Q_hat_poisson_200, Q_star_poisson_200, Q_errors_poisson_200),
+    "Exponential n=10": build_table(Q_hat_expon_10, Q_star_expon_10, Q_errors_expon_10),
+    "Exponential n=200": build_table(Q_hat_expon_200, Q_star_expon_200, Q_errors_expon_200),
 }
 
 with pd.ExcelWriter("./report/figures/task4/task4_tables_simulated1000times.xlsx") as writer:
