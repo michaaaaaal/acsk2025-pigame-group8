@@ -14,3 +14,5 @@ The "data" folder contains the file "BakeryData2025_Vilnius.xlsx"
 
 THE "report" folder contains subfolders "figures" where all of the code exports happen, and "latex" where the LaTeX directory and code for the final report can be found
 
+NOTE: the code that runs 1000x simulations and generates tables may output slightly different values than the ones seen in the report when ran again, due to simulation randomness
+
