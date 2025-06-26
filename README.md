@@ -16,7 +16,7 @@ This repository contains the final project for the 2025 Annual PI Game
 ---
 ## Completion Checklist
 ```
-• Task 1: 🟩 to be verified
+• Task 1: 🟩 DONE
 • Task 2: 🟩 DONE
 • Task 3: 🟩 to be verified
 • Task 4: 🟩 to be verified
