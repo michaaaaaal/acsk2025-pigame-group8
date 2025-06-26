@@ -1,3 +1,11 @@
+  _____  ______          _____    __  __ ______ 
+ |  __ \|  ____|   /\   |  __ \  |  \/  |  ____|
+ | |__) | |__     /  \  | |  | | | \  / | |__   
+ |  _  /|  __|   / /\ \ | |  | | | |\/| |  __|  
+ | | \ \| |____ / ____ \| |__| | | |  | | |____ 
+ |_|  \_\______/_/    \_\_____/  |_|  |_|______|
+                                                
+                                                
 For seamless testing, extract this zip into one folder and do not change the inner structure.
 
 The "code" folder contains python scripts that generate graphs (.png) or tables (.xlsx)
