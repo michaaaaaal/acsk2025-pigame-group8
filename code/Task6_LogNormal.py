@@ -4,7 +4,7 @@ from scipy.stats import lognorm, norm
 from scipy.optimize import minimize_scalar
 import matplotlib.pyplot as plt
 
-bakery_data = pd.read_excel('C:/Users/User/Desktop/PI/BakeryData2025_Vilnius.xlsx')
+bakery_data = pd.read_excel('./data/BakeryData2025_Vilnius.xlsx')
 stores = [col for col in bakery_data.columns if col not in ['date', 'weekday']]
 bakery_long = bakery_data.melt(id_vars=['date', 'weekday'], var_name='store', value_name='demand').dropna()
 weekday_map = {1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday', 7: 'Sunday'}
@@ -119,7 +119,6 @@ plt.savefig(
     'Figure_LogNormal.pdf',
     format='pdf',
     dpi=1200,
-    metadata={'Creator': 'Your Name'},
     facecolor='w'
 )
 
@@ -152,7 +151,6 @@ plt.savefig(
     'Figure_LogNormal_StationB.pdf',
     format='pdf',
     dpi=1200,
-    metadata={'Creator': 'Your Name'},
     facecolor='w'
 )
 

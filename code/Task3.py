@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-np.random.seed(60) #this is just for reproducability btw
+np.random.seed(60)
 
 def nvp_formula(Q, Y, c, p):
     return p * min(Q, Y) - c * Q

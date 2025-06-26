@@ -9,7 +9,7 @@ errors = {}
 
 for sheet in xls.sheet_names:
     df = xls.parse(sheet)
-    df = df.set_index(df.columns[0])  # Correct: use columns[0] after parsing
+    df = df.set_index(df.columns[0])
     errors[sheet] = df.loc["Absolute Error"].values
 
 plt.figure(figsize=(10, 6))

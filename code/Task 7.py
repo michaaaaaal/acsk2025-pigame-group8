@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_excel("C:/Users/Eigenaar/Downloads/BakeryData2025_Vilnius.xlsx")
+df = pd.read_excel("./data/BakeryData2025_Vilnius.xlsx")
 def calculateDemandDrop(rP):
     exp= np.exp(6-(rP/10))
     t1=(1+exp)**-1

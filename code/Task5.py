@@ -117,6 +117,3 @@ for store in stores:
     plt.savefig(f"./report/figures/task5/histogram_{store.replace(' ', '_')}.png", dpi=300)
     plt.show()
 
-
-#for debugging dataset
-#print(bakery_data)
