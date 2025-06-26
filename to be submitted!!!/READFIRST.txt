@@ -1,0 +1,8 @@
+For seamless testing, extract this zip into one folder and do not change the inner structure.
+
+The "code" folder contains python scripts that generate graphs (.png) or tables (.xlsx)
+
+The "data" folder contains the file "BakeryData2025_Vilnius.xlsx"
+
+THE "report" folder contains subfolders "figures" where all of the code exports happen, and "latex" where the LaTeX directory and code for the final report can be found
+
