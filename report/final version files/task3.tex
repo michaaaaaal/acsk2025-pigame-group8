@@ -1,0 +1,106 @@
+The newsvendor model is applicable in this case as the bakery faces uncertain demand, while selling same-day perishable goods. This creates a trade-off between the risks of lost sales (understocking) and spoilage (overstocking). Given demand variability and unknown true distribution, optimal order quantity must be estimated.
+
+One method assumes a parametric distribution \( f(x; \theta) \), e.g., normal, with parameters estimated from historical data. Bootstrap samples \( X^* \sim f(x; \theta) \) are then generated.
+
+Alternatively, the nonparametric approach resamples directly from the empirical distribution function (EDF), defined as:
+\[
+F(y) = \frac{1}{n} \sum_{i=1}^{n} H(y - y_i)
+\]
+where \( H(u) \) is the unit step function (1 if \( u \geq 0 \), 0 otherwise).
+
+\paragraph{Root-Mean-Square Error (RMSE)} 
+\[
+\text{RMSE} = \sqrt{ \frac{1}{M} \sum_{i=1}^{n} (P_i - O_i)^2 }
+\]
+This measures the average magnitude of prediction error, where \( P_i \) are predicted and \( O_i \) observed values (see \cite{willmott2005} for discussion on the advantages of RMSE over MAE)
+
+\paragraph{Empirical Price Loss Ratio (PLR)} 
+\[
+\text{PLR}_n^k(\tau) = \frac{1}{M} \sum_{j=1}^M \left| \frac{R(Q^*; \tau) - R(\hat{Q}_{n,j}^k(\tau); \tau)}{R(Q^*; \tau)} \right|
+\]
+PLR compares profit between the estimated order and optimal order, normalized by the optimal expected profit.
+
+\paragraph{Empirical Service Level (SL)} 
+\[
+\text{SL}_n^k(\tau) = \frac{1}{M} \sum_{j=1}^M I\left\{ \hat{Q}_{n,j}^k(\tau) \geq Y_j \right\}
+\]
+This measures the percentage of simulations in which the estimated order quantity covers the actual demand.
+
+\begin{table}[H]
+\centering
+\caption{RMSE$^P_n(\tau)$}
+\label{tab:rmse_p}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$n \backslash \tau$ & 0.01 & 0.05 & 0.1 & 0.3 & 0.5 & 0.7 & 0.9 & 0.95 & 0.99 \\
+\hline
+10  & 6.212218 & 4.899544 & 4.472625 & 3.344246 & 3.24019 & 3.36837 & 4.37373 & 4.882186 & 6.219007 \\
+50  & 2.76907  & 2.18982  & 1.850608 & 1.481755 & 1.465837 & 1.494265 & 1.899898 & 2.154807 & 2.736072 \\
+100 & 1.905263 & 1.537951 & 1.336774 & 1.080217 & 1.014662 & 1.083056 & 1.33693  & 1.563087 & 1.881672 \\
+200 & 1.354468 & 1.044762 & 0.959343 & 0.771061 & 0.692413 & 0.741837 & 0.947804 & 1.057911 & 1.368015 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{RMSE$^{NP}_n(\tau)$}
+\label{tab:rmse_np}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$n \backslash \tau$ & 0.01 & 0.05 & 0.1 & 0.3 & 0.5 & 0.7 & 0.9 & 0.95 & 0.99 \\
+\hline
+10  & 9.71554  & 5.972408 & 6.361219 & 4.463283 & 4.097794 & 4.205848 & 5.503998 & 5.828964 & 9.744622 \\
+50  & 4.806933 & 2.854802 & 2.551798 & 1.861882 & 1.826107 & 1.856143 & 2.492242 & 2.93719  & 4.622108 \\
+100 & 4.777829 & 2.229433 & 1.717099 & 1.318972 & 1.273402 & 1.306101 & 1.71034  & 2.109493 & 3.473043 \\
+200 & 2.989058 & 1.466918 & 1.240388 & 0.952299 & 0.883723 & 0.925386 & 1.183279 & 1.448877 & 2.587599 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{ $\frac{\text{RMSE}^{NP}_n(\tau)}{\text{RMSE}^{P}_n(\tau)}$ }
+\label{tab:rmse_ratio}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$n \backslash \tau$ & 0.01 & 0.05 & 0.1 & 0.3 & 0.5 & 0.7 & 0.9 & 0.95 & 0.99 \\
+\hline
+10  & 1.563941 & 1.218972 & 1.422256 & 1.334616 & 1.264677 & 1.24863  & 1.258422 & 1.193925 & 1.56691  \\
+50  & 1.735938 & 1.303669 & 1.378897 & 1.256542 & 1.245778 & 1.242178 & 1.311777 & 1.363087 & 1.689322 \\
+100 & 2.507701 & 1.449612 & 1.28451  & 1.221025 & 1.255001 & 1.20594  & 1.279303 & 1.349569 & 1.845722 \\
+200 & 2.206813 & 1.404069 & 1.292955 & 1.235051 & 1.276296 & 1.247425 & 1.248443 & 1.369565 & 1.891499 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+As shown in Table~\ref{tab:rmse_p}
+and Table~\ref{tab:rmse_np}, the RMSE of the parametric estimator is generally lower than that of the non-parametric estimator. A clearer comparison can be made by calculating the RMSE ratio in Table~\ref{tab:rmse_ratio}, since a lower RMSE indicates a more accurate estimator. Under the assumption of a correctly specified model, the parametric method is more precise.
+
+\begin{table}[H]
+\centering
+\caption{ $\frac{\text{PLR}^{NP}_n(\tau)}{\text{PLR}^{P}_n(\tau)}$ }
+\label{tab:plr_ratio}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$n \backslash \tau$ & 0.01 & 0.05 & 0.1 & 0.3 & 0.5 & 0.7 & 0.9 & 0.95 & 0.99 \\
+\hline
+10  & 1.616788 & 1.198526 & 1.455372 & 1.384312 & 1.381471 & 1.392850 & 1.557540 & 1.219940 & 1.931809 \\
+50  & 1.706672 & 1.300384 & 1.370660 & 1.268158 & 1.287416 & 1.258040 & 1.383551 & 1.361334 & 1.680849 \\
+100 & 2.377747 & 1.424709 & 1.282556 & 1.198635 & 1.260811 & 1.197786 & 1.238279 & 1.391589 & 1.999170 \\
+200 & 2.100047 & 1.392118 & 1.275633 & 1.248705 & 1.299327 & 1.204346 & 1.283943 & 1.413369 & 2.001592 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+Table~\ref{tab:plr_ratio} supports this finding from an economic perspective. The PLR ratios are all greater than 1, which means the non-parametric method results in greater profit loss compared to the parametric one. Therefore, from both statistical and economic perspectives, we can conclude that the parametric method is more accurate.
+
+However, the performance of the parametric estimator is highly dependent on the correctness of the distributional assumption. Unlike the non-parametric estimator, it makes no assumptions about the model and is more robust under uncertainty.
+

@@ -1,0 +1,99 @@
+\cite{levi2015} argue that ``If the true demand distribution is nonnormal, then fitting the sample to a normal distribution might result in a suboptimal order quantity.''
+
+As discussed in the previous section, the parametric method relies heavily on distributional assumptions. However, in practical applications, identifying the correct distribution is often difficult. Many different distributions can fit the sample data, and this uncertainty poses a significant risk to the parametric method.
+
+\begin{table}[H]
+\centering
+\caption{\textbf{Table}: $\mathcal{N}(25,0.5)$ ($n=10$)}
+\label{tab:normal_n10}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lccccccccc}
+\toprule
+$\tau$          & 0.01   & 0.05   & 0.10   & 0.30   & 0.50   & 0.70   & 0.90   & 0.95   & 0.99   \\ \midrule
+$\hat{Q}_n^P$   & 23.878 & 24.200 & 24.376 & 24.738 & 25.001 & 25.251 & 25.627 & 25.802 & 26.121 \\
+$Q^*$           & 24.234 & 24.234 & 24.231 & 24.661 & 24.935 & 25.183 & 25.508 & 25.773 & 25.761 \\
+\textit{error}  & 0.358  & 0.136  & 0.170  & 0.111  & 0.106  & 0.107  & 0.138  & 0.135  & 0.362  \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{Table}: $\mathcal{N}(25,0.5)$ ($n=200$)}
+\label{tab:normal_n200}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lccccccccc}
+\toprule
+$\tau$         & 0.01 & 0.05 & 0.10 & 0.30 & 0.50 & 0.70 & 0.90 & 0.95 & 0.99 \\ \midrule
+$\hat{Q}_n^P$  & 23.837 & 24.179 & 24.362 & 24.738 & 25.001 & 25.263 & 25.641 & 25.820 & 26.160 \\
+$Q^*$          & 23.792 & 24.168 & 24.355 & 24.734 & 24.998 & 25.260 & 25.632 & 25.808 & 26.110 \\
+\textit{error} &  0.102 &  0.042 &  0.029 &  0.022 &  0.022 &  0.021 &  0.030 &  0.041 &  0.090 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{Table}: Poisson(25) ($n=10$)}
+\label{tab:poisson_n10}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lccccccccc}
+\toprule
+$\tau$         & 0.01 & 0.05 & 0.10 & 0.30 & 0.50 & 0.70 & 0.90 & 0.95 & 0.99 \\ \midrule
+$\hat{Q}_n^P$  & 13.693 & 17.014 & 18.664 & 22.441 & 25.022 & 27.563 & 31.245 & 32.892 & 36.332 \\
+$Q^*$          & 17.603 & 17.600 & 17.502 & 21.643 & 24.346 & 26.744 & 30.014 & 32.906 & 32.987 \\
+\textit{error} &  3.920 &  1.368 &  1.557 &  1.084 &  1.060 &  1.135 &  1.412 &  1.292 &  3.369 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{Table}: Poisson(25) ($n=200$)}
+\label{tab:poisson_n200}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lccccccccc}
+\toprule
+$\tau$         & 0.01 & 0.05 & 0.10 & 0.30 & 0.50 & 0.70 & 0.90 & 0.95 & 0.99 \\ \midrule
+$\hat{Q}_n^P$  & 13.409 & 16.758 & 18.597 & 22.371 & 24.996 & 27.613 & 31.431 & 33.181 & 36.664 \\
+$Q^*$          & 13.836 & 16.972 & 18.647 & 22.213 & 24.798 & 27.438 & 31.444 & 33.301 & 36.787 \\
+\textit{error} &  0.911 &  0.496 &  0.379 &  0.351 &  0.354 &  0.370 &  0.390 &  0.502 &  0.884 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{Table}: Exponential(25) ($n=10$)}
+\label{tab:exp_n10}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lccccccccc}
+\toprule
+$\tau$         & 0.01  & 0.05  & 0.10  & 0.30  & 0.50  & 0.70  & 0.90  & 0.95  & 0.99 \\ \midrule
+$\hat{Q}_n^P$  & -30.196 & -13.466 &  -4.381 &  13.030 &  24.806 &  37.132 &  54.686 &  62.706 &  77.564 \\
+$Q^*$          &   2.492 &   2.536 &   2.519 &   8.424 &  16.019 &  27.606 &  48.369 &  73.398 &  71.947 \\
+\textit{error} &  32.688 &  16.027 &   7.483 &   4.811 &   8.894 &  10.158 &   8.634 &  11.696 &   8.618 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\caption{\textbf{Table}: Exponential(25) ($n=200$)}
+\label{tab:exp_n200}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lccccccccc}
+\toprule
+$\tau$         & 0.01 & 0.05 & 0.10 & 0.30 & 0.50 & 0.70 & 0.90 & 0.95 & 0.99 \\ \midrule
+$\hat{Q}_n^P$  & -33.084 & -15.987 & -6.911 & 11.955 & 24.933 & 38.040 & 56.853 & 66.312 & 82.895 \\
+$Q^*$          &   0.250 &   1.289 &  2.648 &  8.904 & 17.230 & 29.984 & 56.899 & 74.175 & 109.302 \\
+\textit{error} &  33.334 &  17.277 &  9.559 &  3.051 &  7.703 &  8.055 &  2.762 &  8.083 &  26.407 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+First, we establish a baseline experiment, setting the true distribution to $\mathcal{N}(25, 0.5)$, and fitting the data using the same distribution. For sample sizes of $n = 10$ and $n = 100$, the estimation errors are very small and align with expectations. This shows that when the distributional assumption is correct, the parametric method performs well.
+
+Then, we set the true distribution as $\text{Poisson}(25)$ while still estimating under the assumption of $\mathcal{N}(25, 0.5)$. The Monte Carlo results suggest that, despite the misspecification, the estimation errors are generally within an acceptable range. While the estimator is not optimal, it still performs well and provides practical value.
+
+Finally, in the last case where data is generated from an $\text{Exponential}(25)$ distribution but is fitted using a normal distribution, the estimation errors become extremely large, making the estimated values practically meaningless.
+
+Combining the experimental results across the three settings, we find that the size of the estimation error is strongly related to the similarity of the cumulative distribution functions (CDFs) between the true and assumed distributions. We agree with the statement by \citet{levi2015} that parameter estimation performs well when the model is specified correctly, but the sensitivity to misspecification should not be underestimated, especially in high service levels or large sample scenarios.
+
+In some misspecified cases, we also observe unusually low errors at certain quantiles. These results are likely due to coincidental alignment between the estimated normal quantiles and the true values of a skewed distribution. Such matches are unreliable and should not be interpreted as evidence of model adequacy.
